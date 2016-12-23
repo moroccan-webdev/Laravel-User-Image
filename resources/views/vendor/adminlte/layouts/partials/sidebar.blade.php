@@ -39,8 +39,10 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-envelope'></i> <span>Mailbox</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class='fa fa-inbox'></i> <span>Inbox</span></a></li>
-                    <li><a href="#"><i class='fa fa-envelope-o'></i> <span>Compose</span></a></li>
+                    <li><a href="{{ url('client') }}"><i class='fa fa-inbox'></i>
+                    <span>Inbox</span><small class="label pull-right bg-red">{{ \App\Client::count() }}</small>
+                    </a></li>
+                    <li><a href="{{ url('compose') }}"><i class='fa fa-envelope-o'></i> <span>Compose</span></a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

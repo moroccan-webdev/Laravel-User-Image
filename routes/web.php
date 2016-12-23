@@ -16,9 +16,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::resource('client','ClientController');
 Route::get('/home',['as' => 'home' , 'uses' => 'HomeController@index']);
-
-
 Route::get('/profile', 'UserController@profile');
 Route::post('/profile', 'UserController@update_avatar');
+//compose routes
+Route::get('compose', 'ComposeController@getcompose');
+Route::post('compose', 'ComposeController@postcompose');

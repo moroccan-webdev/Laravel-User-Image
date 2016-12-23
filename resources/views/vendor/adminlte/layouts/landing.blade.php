@@ -73,25 +73,22 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
         <div class="container">
             <div class="row centered">
                 <div class="col-lg-12">
-                    <h1>Acacha <b><a href="https://github.com/acacha/adminlte-laravel">adminlte-laravel</a></b></h1>
-                    <h3>A <a href="https://laravel.com/">Laravel</a> {{ trans('adminlte_lang::message.laravelpackage') }}
-                        scaffolding/boilerplate {{ trans('adminlte_lang::message.to') }} <a href="https://almsaeedstudio.com/preview">AdminLTE</a> {{ trans('adminlte_lang::message.templatewith') }}
-                        <a href="http://getbootstrap.com/">Bootstrap</a> 3.0 {{ trans('adminlte_lang::message.and') }} <a href="http://blacktie.co/demo/pratt/">Pratt</a> Landing page</h3>
-                    <h3><a href="{{ url('/register') }}" class="btn btn-lg btn-success">{{ trans('adminlte_lang::message.gedstarted') }}</a></h3>
+                    <h1>The best <b><a href="#">Sewing Conpany</a></b></h1>
+                    <h3>In The north of<a href="#">Morocco</a></h3>
                 </div>
                 <div class="col-lg-2">
-                    <h5>{{ trans('adminlte_lang::message.amazing') }}</h5>
-                    <p>{{ trans('adminlte_lang::message.basedadminlte') }}</p>
+                    <h5>The Best sewing techniques in the market</h5>
+                    <p>Based on the product of Our comunity</p>
                     <img class="hidden-xs hidden-sm hidden-md" src="{{ asset('/img/arrow1.png') }}">
                 </div>
                 <div class="col-lg-8">
-                    <img class="img-responsive" src="{{ asset('/img/app-bg.png') }}" alt="">
+
                 </div>
                 <div class="col-lg-2">
                     <br>
                     <img class="hidden-xs hidden-sm hidden-md" src="{{ asset('/img/arrow2.png') }}">
                     <h5>{{ trans('adminlte_lang::message.awesomepackaged') }}</h5>
-                    <p>... {{ trans('adminlte_lang::message.by') }} <a href="http://acacha.org/sergitur">Sergi Tur Badenas</a> {{ trans('adminlte_lang::message.at') }} <a href="http://acacha.org">acacha.org</a> {{ trans('adminlte_lang::message.readytouse') }}</p>
+                    <p>... {{ trans('adminlte_lang::message.by') }} <a href="">Sergi Tur Badenas</a> {{ trans('adminlte_lang::message.at') }} <a href="http://acacha.org">acacha.org</a> {{ trans('adminlte_lang::message.readytouse') }}</p>
                 </div>
             </div>
         </div> <!--/ .container -->
@@ -109,7 +106,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                 <div class="col-lg-4">
                     <img src="{{ asset('/img/intro01.png') }}" alt="">
                     <h3>{{ trans('adminlte_lang::message.community') }}</h3>
-                    <p>{{ trans('adminlte_lang::message.see') }} <a href="https://github.com/acacha/adminlte-laravel">{{ trans('adminlte_lang::message.githubproject') }}</a>, {{ trans('adminlte_lang::message.post') }} <a href="https://github.com/acacha/adminlte-laravel/issues">{{ trans('adminlte_lang::message.issues') }}</a> {{ trans('adminlte_lang::message.and') }} <a href="https://github.com/acacha/adminlte-laravel/pulls">{{ trans('adminlte_lang::message.pullrequests') }}</a></p>
+                    <p>{{ trans('adminlte_lang::message.see') }} <a href="#">{{ trans('adminlte_lang::message.githubproject') }}</a>, {{ trans('adminlte_lang::message.post') }} <a href="https://github.com/acacha/adminlte-laravel/issues">{{ trans('adminlte_lang::message.issues') }}</a> {{ trans('adminlte_lang::message.and') }} <a href="https://github.com/acacha/adminlte-laravel/pulls">{{ trans('adminlte_lang::message.pullrequests') }}</a></p>
                 </div>
                 <div class="col-lg-4">
                     <img src="{{ asset('/img/intro02.png') }}" alt="">
@@ -242,46 +239,54 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <div id="footerwrap">
         <div class="container">
             <div class="col-lg-5">
-                <h3>{{ trans('adminlte_lang::message.address') }}</h3>
+                <h3>Address</h3>
                 <p>
-                    Av. Greenville 987,<br/>
-                    New York,<br/>
-                    90873<br/>
-                    United States
+                    Av. El Quods,<br/>
+                    Tangier,<br/>
+                    90000<br/>
+                    Morocco
                 </p>
             </div>
 
             <div class="col-lg-7">
-                <h3>{{ trans('adminlte_lang::message.dropus') }}</h3>
+                <h3>Contact Us</h3>
                 <br>
-                <form role="form" action="#" method="post" enctype="plain">
-                    <div class="form-group">
-                        <label for="name1">{{ trans('adminlte_lang::message.yourname') }}</label>
-                        <input type="name" name="Name" class="form-control" id="name1" placeholder="{{ trans('adminlte_lang::message.yourname') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="email1">{{ trans('adminlte_lang::message.emailaddress') }}</label>
-                        <input type="email" name="Mail" class="form-control" id="email1" placeholder="{{ trans('adminlte_lang::message.enteremail') }}">
-                    </div>
-                    <div class="form-group">
-                        <label>{{ trans('adminlte_lang::message.yourtext') }}</label>
-                        <textarea class="form-control" name="Message" rows="3"></textarea>
-                    </div>
-                    <br>
-                    <button type="submit" class="btn btn-large btn-success">{{ trans('adminlte_lang::message.submit') }}</button>
-                </form>
+                {!! Form::open(['route' => 'client.store','form data-parsley-validate' => ''])!!}
+
+                {{ Form::label('name','Name: ')}}
+                {{ Form::text('name', null, array('class' => 'form-control', 'required' => '','maxlength' => '255'))}}
+
+                {{ Form::label('title','Title: ')}}
+                {{ Form::text('title', null, array('class' => 'form-control', 'required' => '','maxlength' => '255'))}}
+
+                {{ Form::label('email','Email: ')}}
+                {{ Form::text('email', null, array('class' => 'form-control', 'required' => '','maxlength' => '255'))}}
+
+                {{ Form::label('phone','Phone: ')}}
+                {{ Form::text('phone', null, array('class' => 'form-control', 'required' => '','maxlength' => '255'))}}
+
+                {{ Form::label('address','Address: ')}}
+                {{ Form::text('address', null, array('class' => 'form-control', 'required' => '','maxlength' => '255'))}}
+
+                {{ Form::label('city','City: ')}}
+                {{ Form::text('city', null, array('class' => 'form-control', 'required' => '','maxlength' => '50'))}}
+
+                {{ Form::label('website','Website: ')}}
+                {{ Form::text('website', null, array('class' => 'form-control','maxlength' => '255'))}}
+
+                {{ Form::label('body','Body: ')}}
+                {{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '','maxlength' => '255'))}}
+
+                {{ Form::submit('Send',  array('class' => 'btn btn-success btn-lg btn-block', 'style'=> 'margin-top: 20px'))}}
+                    {!! Form::close() !!}
             </div>
         </div>
     </div>
     <div id="c">
         <div class="container">
             <p>
-                <a href="https://github.com/acacha/adminlte-laravel"></a><b>admin-lte-laravel</b></a>. {{ trans('adminlte_lang::message.descriptionpackage') }}.<br/>
-                <strong>Copyright &copy; 2015 <a href="http://acacha.org">Acacha.org</a>.</strong> {{ trans('adminlte_lang::message.createdby') }} <a href="http://acacha.org/sergitur">Sergi Tur Badenas</a>. {{ trans('adminlte_lang::message.seecode') }} <a href="https://github.com/acacha/adminlte-laravel">Github</a>
-                <br/>
-                AdminLTE {{ trans('adminlte_lang::message.createdby') }} Abdullah Almsaeed <a href="https://almsaeedstudio.com/">almsaeedstudio.com</a>
-                <br/>
-                 Pratt Landing Page {{ trans('adminlte_lang::message.createdby') }} <a href="http://www.blacktie.co">BLACKTIE.CO</a>
+                <a href="#"></a><b>Sewing Company</b></a> Is a moroccan company based in the north of Morocco.<br/>
+                <strong>Copyright &copy; 2016 .</strong> Created by <a href="#">Abdo(nor+rahman)</a>.
             </p>
 
         </div>
