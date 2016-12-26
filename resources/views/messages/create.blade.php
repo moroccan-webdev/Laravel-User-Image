@@ -26,22 +26,22 @@
     <div class="box-header with-border">
       <h3 class="box-title">Compose New Message</h3>
     </div>
+					@if (Session::has('success'))
+						<div class="alert alert-success" role="alert">
+						<strong>Success:</strong>{{Session::get('success')}}</div>
+					@endif
 
-    		@if (count($errors) > 0)
-    				<div class="alert alert-danger">
-    						<strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
-    						<ul>
-    								@foreach ($errors->all() as $error)
-    										<li>{{ $error }}</li>
-    								@endforeach
-    						</ul>
-    				</div>
-    		@endif
+					@if (count($errors) > 0)
+						<div class="alert alert-danger" role="alert">
+							<strong>Errors:</strong>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+						</div>
+					@endif
 
-
-    <!-- /.box-header -->
 		<!--<form action="{{ url('compose') }}" method="POST" files = "true">-->
-			<form method="post" enctype="multipart/form-data" action="{{ url('compose') }}">
+			<form method="post" enctype="multipart/form-data" action="{{ route('message.store') }}">
                     {{ csrf_field() }}
     <div class="box-body">
       <div class="form-group">
@@ -66,10 +66,10 @@
     <!-- /.box-body -->
     <div class="box-footer">
       <div class="pull-right">
-        <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
         <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
       </div>
-      <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
+      <!--<button type="reset" class="btn btn-default"><a href="{{ url('client') }}"><i class="fa fa-times"></i> Discard</a></button>-->
+			<a class="btn btn-default" href="{{ url('client') }}"><i class="fa fa-times"></i> Discard</a>
     </div>
 		</form>
     <!-- /.box-footer -->

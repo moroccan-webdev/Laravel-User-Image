@@ -1,30 +1,12 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Clients
+	Emails
 @endsection
 
 
 @section('stylesheets')
 <link href="{{ url('vendor/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="../../plugins/iCheck/flat/blue.css">
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<!-- Bootstrap 3.3.6 -->
-<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-<!-- fullCalendar 2.2.5-->
-<link rel="stylesheet" href="../../plugins/fullcalendar/fullcalendar.min.css">
-<link rel="stylesheet" href="../../plugins/fullcalendar/fullcalendar.print.css" media="print">
-<!-- Theme style -->
-<link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
-<!-- AdminLTE Skins. Choose a skin from the css/skins
-		 folder instead of downloading all of them to reduce the load. -->
-<link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
-<!-- iCheck -->
-<link rel="stylesheet" href="../../plugins/iCheck/flat/blue.css">
 @endsection
 
 
@@ -34,7 +16,7 @@
     <div class="col-md-12">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Inbox</h3>
+          <h3 class="box-title">Sent</h3>
 
 					@if (Session::has('success'))
 						<div class="alert alert-success" role="alert">
@@ -50,7 +32,7 @@
 						</div>
 					@endif
 
-          <form method="GET" action="{{ route('client.index') }}">
+          <form method="GET" action="{{ route('message.index') }}">
           <div class="box-tools pull-right">
             <div class="has-feedback">
               <input type="text" name="titlesearch" class="form-control input-sm" placeholder="Search Mail">
@@ -71,26 +53,26 @@
             <table class="table table-hover table-striped">
 							<thead style="font-size:16px; font-weight:bold">
 								<td></td>
-								<td style="margin-left:15px">Title</td>
-								<td>Email</td>
+								<td style="margin-left:15px">Email</td>
+								<td>Subject</td>
 								<td>Message</td>
-								<td>Phone</td>
+								<td>Join</td>
 								<td>Received At</td>
 								<td>Actions</td>
 							</thead>
               <tbody>
-                @if($clients->count())
-      						@foreach($clients as $key => $client)
+                @if($messages->count())
+      						@foreach($messages as $key => $message)
               <tr>
                 <td><i class='fa fa-envelope-open-o'></i></td>
-                <td style="margin-left:15px" class="mailbox-name"><a href="{!!Route('client.show', array($client->id))!!}">{{ substr($client->name , 0, 20)}} {{ strlen($client->name) > 20 ? "...": ""}}</a></td>
-                <td class="mailbox-subject"><b>{{ substr($client->email , 0, 20)}} {{ strlen($client->email) > 20 ? "...": ""}}</b></td>
-								<td> - {{ substr($client->body , 0, 30)}} {{ strlen($client->body) > 30 ? "...": ""}}</td>
-                <td class="mailbox-date">{{$client->phone}}</td>
-                <td class="mailbox-date">{{$client->created_at}}</td>
-                <td><a href="{{Route('client.show',$client->id)}}" class="btn btn-primary btn-xs"><i class='fa fa-eye'></i></a>
+                <td style="margin-left:15px" class="mailbox-name"><a href="{!!Route('message.show', array($message->id))!!}">{{ substr($message->email , 0, 20)}} {{ strlen($message->email) > 20 ? "...": ""}}</a></td>
+                <td class="mailbox-subject"><b>{{ substr($message->subject , 0, 20)}} {{ strlen($message->subject) > 20 ? "...": ""}}</b></td>
+								<td> - {{ substr(strip_tags($message->message) , 0, 40)}} {{ strlen(strip_tags($message->message)) > 50 ? "...": ""}}</td>
+							  <td class="mailbox-attachment"><i class="{{ ( ! empty($message->attachment) ? 'fa fa-paperclip' : '') }}"</i></td>
+                <td class="mailbox-date">{{$message->created_at}}</td>
+                <td><a href="{{Route('message.show',$message->id)}}" class="btn btn-primary btn-xs"><i class='fa fa-eye'></i></a>
 							    <div class="btn-xs" style="display:inline-block">
-								    {!! Form::open(['route' => ['client.destroy', $client->id], 'method' => 'DELETE']) !!}
+								    {!! Form::open(['route' => ['message.destroy', $message->id], 'method' => 'DELETE']) !!}
 								    <button type="submit" class="btn btn-danger btn-xs"><i class='fa fa fa-trash'></i></button>
 								    {!! Form::close() !!}
 									</div>
@@ -113,7 +95,7 @@
           <div class="mailbox-controls">
             <!-- Check all button -->
             <div class="pull-mmiddle">
-            	{{ $clients->links() }}
+            	{{ $messages->links() }}
               <!-- /.btn-group -->
             </div>
             <!-- /.pull-right -->

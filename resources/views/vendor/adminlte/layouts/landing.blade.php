@@ -238,6 +238,19 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <section id="contact" name="contact"></section>
     <div id="footerwrap">
         <div class="container">
+          @if (Session::has('success'))
+            <div class="alert alert-success" role="alert">
+            <strong>Success:</strong>{{Session::get('success')}}</div>
+          @endif
+
+          @if (count($errors) > 0)
+            <div class="alert alert-danger" role="alert">
+              <strong>Errors:</strong>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+            </div>
+          @endif
             <div class="col-lg-5">
                 <h3>Address</h3>
                 <p>
@@ -246,8 +259,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                     90000<br/>
                     Morocco
                 </p>
-            </div>
-
+            </div>        
             <div class="col-lg-7">
                 <h3>Contact Us</h3>
                 <br>

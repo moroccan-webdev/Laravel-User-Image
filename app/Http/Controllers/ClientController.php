@@ -100,7 +100,12 @@ class ClientController extends Controller
     public function show($id)
     {
       $client = Client::find($id);
-      return view('clients.show')->with('client', $client);
+      // get previous message id
+      $previous = Client::where('id', '<', $client->id)->max('id');
+      // get next message id
+      $next = Client::where('id', '>', $client->id)->min('id');
+      // return the show view
+      return view('clients.show')->with('client', $client)->with('previous', $previous)->with('next', $next);;
     }
 
     /**

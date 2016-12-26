@@ -22,9 +22,13 @@
             </div>
         @endif
 
-        <div class="box-tools pull-right">
-          <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
-          <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
+				<div class="box-tools pull-right">
+					@if($previous)
+          <a href="{{ route( 'client.show', $previous) }}" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
+					@endif
+					@if($next)
+					<a href="{{ route( 'client.show', $next) }}" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
+					@endif
         </div>
       </div>
       <!-- /.box-header -->
@@ -35,19 +39,6 @@
             <span class="mailbox-read-time pull-right">{{ date('M j, Y H:i', strtotime($client->created_at)) }}</span></h5>
         </div>
         <!-- /.mailbox-read-info -->
-        <div class="mailbox-controls with-border text-center">
-          <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
-              <i class="fa fa-trash-o"></i><a href="#"></a></button>
-            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
-              <i class="fa fa-reply"></i></button>
-            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Forward">
-              <i class="fa fa-share"></i></button>
-          </div>
-          <!-- /.btn-group -->
-          <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
-            <i class="fa fa-print"></i></button>
-        </div>
         <!-- /.mailbox-controls -->
         <div class="mailbox-read-message">
           <p>{{ $client->body }}</p>
@@ -58,10 +49,11 @@
       <!-- /.box-footer -->
       <div class="box-footer">
         <div class="pull-right">
-          <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
+            <!--<button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print</button>-->
         </div>
-        <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
-        <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
+				{!! Form::open(['route' => ['client.destroy', $client->id], 'method' => 'DELETE']) !!}
+      	<button type="submit" class="btn btn-default"><i style="margin-right:6px"class='fa fa fa-trash'></i>Delete</button>
+				{!! Form::close() !!}
       </div>
       <!-- /.box-footer -->
     </div>

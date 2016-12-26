@@ -16,10 +16,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::resource('client','ClientController');
+Route::resource('client','ClientController',['except'=> ['edit'],['update']]);
+Route::resource('message','MessageController',['except'=> ['edit']]);
 Route::get('/home',['as' => 'home' , 'uses' => 'HomeController@index']);
 Route::get('/profile', 'UserController@profile');
 Route::post('/profile', 'UserController@update_avatar');
-//compose routes
-Route::get('compose', 'ComposeController@getcompose');
-Route::post('compose', 'ComposeController@postcompose');
+ // The following route generates a pdf
+Route::get('getPDF/{id}', ['uses' => 'PDFController@getPDF', 'as' => 'getPDF']);

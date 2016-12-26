@@ -162,7 +162,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -182,6 +182,8 @@ return [
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Mews\Purifier\PurifierServiceProvider::class,
+
 
     ],
 
@@ -235,7 +237,9 @@ return [
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-
+        'HumanReadable' => App\Helpers\HumanReadable::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Purifier' => Mews\Purifier\Facades\Purifier::class,
 
 
     ],
