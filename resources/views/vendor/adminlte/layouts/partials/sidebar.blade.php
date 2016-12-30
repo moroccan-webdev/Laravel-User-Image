@@ -77,6 +77,8 @@
               </ul>
               </li>
 
+              <li class="{{ Request::is('user') ? "active":""}}"><a href="{{ url('user') }}"><i class='fa fa-users'></i> <span>Users</span></a></li>
+
 
         </ul><!-- /.sidebar-menu -->
     </section>

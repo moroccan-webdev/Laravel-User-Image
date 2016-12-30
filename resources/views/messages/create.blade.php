@@ -4,6 +4,10 @@
 	Compose New message
 @endsection
 
+@section('inpage')
+	Mailbox > <a href="{{ url('message/create') }}" >Compose</a>
+@endsection
+
 @section('stylesheets')
 <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
   <script>
@@ -18,10 +22,8 @@
 @endsection
 
 @section('main-content')
-<div class="container">
-
-
-<div class="col-md-12">
+<div class="row">
+	<div class="col-lg-12 col-xs-12">
   <div class="box box-primary">
     <div class="box-header with-border">
       <h3 class="box-title">Compose New Message</h3>

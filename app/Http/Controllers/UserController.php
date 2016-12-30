@@ -5,10 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Session;
 use Image;
 
 class UserController extends Controller
 {
+  public function index(Request $request)
+  {
+
+    if($request->has('titlesearch')){
+       $users = User::search($request->titlesearch)
+         ->orderBy('id','desc')->paginate(10);
+    }else{
+       $users = User::orderBy('id','desc')->paginate(10);
+    }
+    return view('users.index',compact('users'));
+    }
+
     public function profile(){
       return view('profile', array('user'=> Auth::user()));
     }
@@ -54,5 +67,32 @@ class UserController extends Controller
 
 
     	return view('profile', array('user' => Auth::user()) );
+    }
+
+    public function show($id)
+    {
+      $user = User::find($id);
+      // get previous message id
+      $previous = User::where('id', '<', $user->id)->max('id');
+      // get next message id
+      $next = User::where('id', '>', $user->id)->min('id');
+      // return the show view
+      return view('users.show')->with('user', $user)->with('previous', $previous)->with('next', $next);;
+    }
+
+    public function destroy($id)
+    {
+      //find the user which will be deleted
+      $user = User::find($id);
+
+      //detete the user
+      $user->delete();
+
+      //create a session flash
+      Session::flash('success','This client was successfully deleted !');
+
+
+      //redirect to the index page
+      return redirect()->route('user.index');
     }
 }

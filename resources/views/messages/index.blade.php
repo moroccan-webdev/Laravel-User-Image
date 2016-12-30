@@ -4,6 +4,10 @@
 	Emails
 @endsection
 
+@section('inpage')
+	Mailbox > <a href="{{ url('message') }}" >Sent</a>
+@endsection
+
 
 @section('stylesheets')
 <link href="{{ url('vendor/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
@@ -11,9 +15,8 @@
 
 
 @section('main-content')
-<div class="container">
-    <!-- form start -->
-    <div class="col-md-12">
+<div class="row">
+	<div class="col-lg-12 col-xs-12">
       <div class="box box-primary">
         <div class="box-header with-border">
           <h3 class="box-title">Sent</h3>

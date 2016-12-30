@@ -4,6 +4,9 @@
 	Clients
 @endsection
 
+@section('inpage')
+	Mailbox > <a href="{{ url('client') }}" >Inbox</a>
+@endsection
 
 @section('stylesheets')
 <link href="{{ url('vendor/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
@@ -29,9 +32,8 @@
 
 
 @section('main-content')
-<div class="container">
-    <!-- form start -->
-    <div class="col-md-12">
+<div class="row">
+	<div class="col-lg-12 col-xs-12">
       <div class="box box-primary">
         <div class="box-header with-border">
           <h3 class="box-title">Inbox</h3>
@@ -83,15 +85,15 @@
       						@foreach($clients as $key => $client)
               <tr>
                 <td><i class='fa fa-envelope-open-o'></i></td>
-                <td style="margin-left:15px" class="mailbox-name"><a href="{!!Route('client.show', array($client->id))!!}">{{ substr($client->name , 0, 20)}} {{ strlen($client->name) > 20 ? "...": ""}}</a></td>
+                <td style="margin-left:15px" class="mailbox-name"><a href="{!!Route('client.show', array($client->id))!!}">{{ substr($client->name , 0, 15)}} {{ strlen($client->name) > 15 ? "...": ""}}</a></td>
                 <td class="mailbox-subject"><b>{{ substr($client->email , 0, 20)}} {{ strlen($client->email) > 20 ? "...": ""}}</b></td>
-								<td> - {{ substr($client->body , 0, 30)}} {{ strlen($client->body) > 30 ? "...": ""}}</td>
-                <td class="mailbox-date">{{$client->phone}}</td>
+								<td>{{ substr($client->body , 0, 20)}} {{ strlen($client->body) > 20 ? "...": ""}}</td>
+                <td class="mailbox-date">{{ substr($client->phone , 0, 15)}} {{ strlen($client->phone) > 15 ? "...": ""}}</td>
                 <td class="mailbox-date">{{$client->created_at}}</td>
                 <td><a href="{{Route('client.show',$client->id)}}" class="btn btn-primary btn-xs"><i class='fa fa-eye'></i></a>
 							    <div class="btn-xs" style="display:inline-block">
 								    {!! Form::open(['route' => ['client.destroy', $client->id], 'method' => 'DELETE']) !!}
-								    <button type="submit" class="btn btn-danger btn-xs"><i class='fa fa fa-trash'></i></button>
+								    <button type="submit" class="btn btn-danger btn-xs"><i class='fa fa-trash'></i></button>
 								    {!! Form::close() !!}
 									</div>
 								</td>

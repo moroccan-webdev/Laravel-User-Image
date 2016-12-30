@@ -3,11 +3,29 @@ width: 200px;
 height: 200px;
 float: left;
 border-radius: 50%;
-margin: 30px;
+margin: 15px;
+}
+
+#avatar_image_user {
+width: 200px;
+height: 200px;
+float: left;
+margin: 30px 20px;
+border-radius: 50%;
+border:1px solid #00c0ef;
 }
 
 .profileUpload {
   margin: 10px 40px;
+}
+
+#showinfo {
+  margin: 15px 20px ;
+  font-size: 13px;
+}
+
+#connected {
+  margin-top: 20px;
 }
 
 #profilefields {
@@ -23,3 +41,10 @@ left:10px;
 border-radius:50%
 }
 */
+.userimage {
+  width: 30px;
+  height: 30px;
+  float: left;
+  border-radius: 50%;
+  margin: 1px;
+}

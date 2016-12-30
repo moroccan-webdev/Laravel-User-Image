@@ -183,7 +183,7 @@ return [
         Laravel\Scout\ScoutServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Mews\Purifier\PurifierServiceProvider::class,
-
+        
 
     ],
 
